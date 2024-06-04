@@ -734,6 +734,9 @@ function resetAll() {
   btnNext.setAttribute("disabled", true);
   btnNext.classList.remove("hide");
   btnReset.classList.remove("hide");
+  stepNumber.classList.remove("hide");
+  stepTitle.classList.remove("hide");
+  document.querySelector(".final-statement").classList.add("hide");
   canvas.classList.add("hide");
 }
 

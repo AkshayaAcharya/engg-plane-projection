@@ -375,8 +375,19 @@ h1 {
   color: var(--clr-text-clr);
   border-radius: 1rem;
   cursor: pointer;
-  transition: display 0.3s;
+  transition: all 0.2s;
   justify-self: center;
+}
+.btn:hover {
+  background-image: linear-gradient(
+    to bottom,
+    var(--clr-side-background2),
+    var(--clr-side-background3)
+  );
+  background-clip: text;
+  color: transparent;
+  border: 0.3rem solid var(--clr-title-background);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
 }
 .question-btn {
   padding: 1rem;
@@ -402,11 +413,13 @@ h1 {
     var(--clr-body-clr)
   );
   color: var(--clr-side-background3);
+  cursor: not-allowed;
 }
 
 .btn-group {
   display: flex;
   gap: 0.5rem;
+  grid-column: 3/4;
 }
 
 .btn-next,
