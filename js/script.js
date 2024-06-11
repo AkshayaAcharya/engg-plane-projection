@@ -5,14 +5,15 @@ const data = [
     questions: [
       {
         question: "We are dealing with projection of ?",
-        options: ["Decogon", "Planes", "Points", "Lines"],
-        answer: 2,
+        options: ["Solids", "Planes", "Points", "Lines"],
+        answer: 1,
         buttonClass: "btnAxis",
       },
       {
-        question: "We are dealing with projection of scscdcdcs?",
-        options: ["Decogon", "Planes", "Pointwwwwwwwwwws", "Lines"],
-        answer: 2,
+        question:
+          "What is the correct way to abbreviate Drawing on the grid sheet?",
+        options: ["Drng", "DRG", "Drwg", "Drg"],
+        answer: 1,
         buttonClass: "btnVPHP",
       },
     ],
@@ -22,26 +23,31 @@ const data = [
     title: "Draw the top view of pentagon",
     questions: [
       {
-        question: "Second Step...Pentagon draw",
-        options: ["Decogon", "Planes", "Points", "Lines"],
-        answer: 2,
+        question: "Number of edges in a pentagon?",
+        options: ["1", "4", "3", "5"],
+        answer: 3,
         buttonClass: "btnPentagon",
       },
       {
-        question: "Second Step....Name vertices",
-        options: ["Decogon", "Planessssss", "Points", "Lines"],
-        answer: 2,
+        question: "Number of vertices in a pentagon?",
+        options: ["4", "6", "5", "7"],
+        answer: 1,
         buttonClass: "btnNameVertices",
       },
       {
-        question: "Second Step....Project Lines",
-        options: ["Decogon", "Planessssss", "Points", "Lines"],
-        answer: 2,
+        question: "We are dealing with projection of pentagon of side?",
+        options: ["10mm", "40mm", "35mm", "25mm"],
+        answer: 3,
         buttonClass: "btnProject",
       },
       {
-        question: "Second Step....Top View",
-        options: ["Decogon", "Planessssss", "Points", "Lines"],
+        question: "Choose the correct projection points",
+        options: [
+          "a'b'c'd'e'",
+          "(e')a'b'(c')f'",
+          "e'(a')b'(d')c'",
+          "c'(a')b'(e')d'",
+        ],
         answer: 2,
         buttonClass: "btnTopview",
       },
@@ -52,15 +58,15 @@ const data = [
     title: "Draw the apparent front view of Pentagon inclined to HP(θ)",
     questions: [
       {
-        question: "Third Step...(θ) value is",
+        question: "What is the inclination angle to the HP(θ)",
         options: ["30", "45", "60", "90"],
-        answer: 2,
+        answer: 0,
         buttonClass: "btnInclination",
       },
       {
-        question: "Third Step...(θ) Projection bottom",
-        options: ["30", "45", "60", "90"],
-        answer: 2,
+        question: "Color of the projection lines",
+        options: ["black", "red", "green", "grey"],
+        answer: 3,
         buttonClass: "btnProjectionBottom",
       },
     ],
@@ -70,7 +76,7 @@ const data = [
     title: "Draw the side on the HP making of Pentagon inclined to VP(α)",
     questions: [
       {
-        question: "Fourth Step...(α) value is",
+        question: "What is the inclination angle to the VP(α)",
         options: ["30", "45", "60", "90"],
         answer: 2,
         buttonClass: "btnSidePlot",
@@ -82,16 +88,15 @@ const data = [
     title: "Draw the actual front view of pentagon",
     questions: [
       {
-        question: "Fifth Step...(α) value is",
-        options: ["30", "45", "60", "90"],
-        answer: 2,
+        question: "The Top view of an object is viewed on which plane?",
+        options: [
+          "Horizontal Plane",
+          "Parallel Plane",
+          "Vertical Plane",
+          "Profile Plane",
+        ],
+        answer: 0,
         buttonClass: "btnProjectionUp",
-      },
-      {
-        question: "Fifth Step...(α) value is",
-        options: ["30", "45", "60", "90"],
-        answer: 2,
-        buttonClass: "btnFinalPlot",
       },
     ],
   },
@@ -603,7 +608,7 @@ function drawUpProjectionLines() {
     600,
     200 - (50 * Math.sin(Math.PI / 6)) / (2 * Math.tan(Math.PI / 10))
   );
-  animateRecursively(
+  animate(
     400 +
       100 * Math.cos(Math.PI / 3) +
       50 * Math.cos(Math.PI / 10) * Math.cos(Math.PI / 3.75),
@@ -613,7 +618,9 @@ function drawUpProjectionLines() {
     400 +
       100 * Math.cos(Math.PI / 3) +
       50 * Math.cos(Math.PI / 10) * Math.cos(Math.PI / 3.75),
-    160
+    160,
+    0,
+    finalPlot
   );
   ctx.closePath();
   btnProjectionUp.classList.add("hide");
@@ -649,8 +656,8 @@ function finalPlot() {
   ctx.stroke();
   ctx.fillText("Front View", 550, 130);
   ctx.fillText("Top View", 550, 350);
-  btnFinalPlot.classList.add("hide");
-  nextQuestion();
+  // btnFinalPlot.classList.add("hide");
+  // nextQuestion();
 }
 
 function drawLine(x1, y1, x2, y2, ratio) {
