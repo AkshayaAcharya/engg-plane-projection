@@ -415,6 +415,9 @@ h1 {
   color: var(--clr-side-background3);
   cursor: not-allowed;
 }
+.btn-next:not(:disabled) {
+  animation: highlight 1s infinite;
+}
 
 .btn-group {
   display: flex;
@@ -442,6 +445,7 @@ h1 {
   font-style: 1.8rem;
   font-weight: 700;
   justify-self: end;
+  position: relative;
 }
 
 .quiz-div {
@@ -593,6 +597,11 @@ canvas {
 .wrong {
   color: red;
 }
+.validate {
+  grid-column: 1/-1;
+  justify-self: center;
+  font-size: 1.6rem;
+}
 
 .btn-top {
   grid-column: 1/-1;
@@ -612,4 +621,37 @@ canvas {
   text-align: center;
   font-style: 1.8rem;
   font-weight: 900;
+}
+
+.blink {
+  animation: highlight 1s infinite;
+}
+.btn-next:enabled::after {
+  content: "Next Step";
+  width: 100%;
+  display: inline-block;
+  position: absolute;
+  bottom: -100%;
+  color: #000;
+}
+
+@keyframes highlight {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    transform: scale(1.02);
+    box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.8);
+  }
+}
+@-webkit-keyframes highlight {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    transform: scale(1.02);
+    box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.8);
+  }
 }

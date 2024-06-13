@@ -4,8 +4,8 @@ const data = [
     title: "Draw the axis and also name the VP and HP",
     questions: [
       {
-        question: "We are dealing with projection of ?",
-        options: ["Solids", "Planes", "Points", "Lines"],
+        question: "The type of projection discussed here is related to",
+        options: ["Curves", "Planes", "Points", "Lines"],
         answer: 1,
         buttonClass: "btnAxis",
       },
@@ -31,7 +31,7 @@ const data = [
       {
         question: "Number of vertices in a pentagon?",
         options: ["4", "6", "5", "7"],
-        answer: 1,
+        answer: 2,
         buttonClass: "btnNameVertices",
       },
       {
@@ -146,6 +146,8 @@ const btnReset = document.querySelector(".btn-reset");
 btnReset.addEventListener("click", resetAll);
 const btnTop = document.querySelector(".btn-top");
 btnTop.addEventListener("click", movetoTop);
+const validateAnswer = document.createElement("span");
+validateAnswer.classList.add("validate");
 
 function displayDiv(ele) {
   const taskScreen = document.querySelectorAll(".task-screen");
@@ -160,7 +162,7 @@ function displayDiv(ele) {
   }
   if (ele.classList.contains("tool-practice")) {
     document.querySelector(".practice").classList.remove("hide");
-    initialSetup();
+    if (currentStep === undefined) initialSetup();
   }
 }
 
@@ -186,6 +188,7 @@ function nextStep() {
   stepNumber.textContent = currentStepCount;
   stepTitle.textContent = currentStep.title;
   btnNext.setAttribute("disabled", true);
+  btnNext.classList.remove("blink");
   initialSetup();
 }
 
@@ -200,9 +203,11 @@ function nextQuestion() {
       stepTitle.classList.add("hide");
       document.querySelector(".final-statement").classList.remove("hide");
       btnNext.classList.add("hide");
+      btnNext.classList.remove("blink");
     } else {
       currentStepCount += 1;
       btnNext.removeAttribute("disabled");
+      btnNext.classList.add("blink");
     }
   }
 }
@@ -724,9 +729,13 @@ function checkAnswer(ele, index, answer, buttonClass) {
   if (index === answer) {
     optionSelected.classList.add("correct");
     buttonClass.classList.remove("hide");
+    validateAnswer.innerHTML = "Right answer👍";
+    answersDiv.appendChild(validateAnswer);
   } else {
     optionSelected.classList.add("wrong");
     buttonClass.classList.add("hide");
+    validateAnswer.innerHTML = "Worng answer, please check the options again👎";
+    answersDiv.appendChild(validateAnswer);
   }
 }
 
